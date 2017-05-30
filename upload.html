@@ -1,0 +1,124 @@
+
+<html>
+<head>
+<title>Ajax Image Upload Using PHP and jQuery</title>
+<link rel="stylesheet" href="style.css" />
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="script.js"></script>
+</head>
+<body>
+<div class="main">
+<h1>Ajax Image Upload</h1><br/>
+<hr>
+<form id="uploadimage" action="" method="post" enctype="multipart/form-data">
+<div id="image_preview"><img id="previewing" src="noimage.png" /></div>
+<hr id="line">
+<div id="selectImage">
+<label>Select Your Image</label><br/>
+<input type="file" name="file" id="file" required />
+<input type="submit" value="Upload" class="submit" />
+</div>
+</form>
+</div>
+<h4 id='loading' >loading..</h4>
+<div id="message"></div>
+
+<script>
+$(document).ready(function (e) {
+    $("#uploadimage").on('submit',(function(e) {
+        e.preventDefault();
+        $("#message").empty();
+        $('#loading').show();
+        $.ajax({
+          url: "http://localhost:8888/dashboard/image_api/", // Url to which the request is send
+          type: "POST",             // Type of request to be send, called as method
+          data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+          contentType: false,       // The content type used when sending data to the server.
+          cache: false,             // To unable request pages to be cached
+          processData:false,        // To send DOMDocument or non processed data file it is set to false
+          success: function(data)   // A function to be called if request succeeds
+          {
+          $('#loading').hide();
+          $("#message").html(data);
+          }
+        });
+      }));
+
+      // Function to preview image after validation
+      $(function() {
+      $("#file").change(function() {
+      $("#message").empty(); // To remove the previous error message
+      var file = this.files[0];
+      var imagefile = file.type;
+      var match= ["image/jpeg","image/png","image/jpg"];
+      if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
+      {
+      $('#previewing').attr('src','noimage.png');
+      $("#message").html("<p id='error'>Please Select A valid Image File</p>"+"<h4>Note</h4>"+"<span id='error_message'>Only jpeg, jpg and png Images type allowed</span>");
+      return false;
+      }
+      else
+      {
+      var reader = new FileReader();
+      reader.onload = imageIsLoaded;
+      reader.readAsDataURL(this.files[0]);
+      }
+      });
+      });
+      function imageIsLoaded(e) {
+      $("#file").css("color","green");
+      $('#image_preview').css("display", "block");
+      $('#previewing').attr('src', e.target.result);
+      $('#previewing').attr('width', '250px');
+      $('#previewing').attr('height', '230px');
+    };
+});
+</script>
+</body>
+</html>
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+  <!--<head>-->
+  	 <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
+  	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.css" />-->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+    <!--<link rel="stylesheet" href="./croppie.css" />-->
+    <!--<script src="./croppie.js"></script>-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <!--<meta charset="utf-8">-->
+    <!--<title>culturejob</title>-->
+  <!--</head>-->
+  <!--<body>-->
+    <!--Upload-->
+    <!--<button>Upload</button>-->
+  <!--</body>-->
+  <!--&lt;!&ndash;<script>&ndash;&gt;-->
+    <!--&lt;!&ndash;var fd = new FormData();&ndash;&gt;-->
+    <!--&lt;!&ndash;fd.append('fname', 'don.jpeg');&ndash;&gt;-->
+    <!--&lt;!&ndash;fd.append('data', Blob);&ndash;&gt;-->
+    <!--&lt;!&ndash;$.ajax({&ndash;&gt;-->
+        <!--&lt;!&ndash;type: 'POST',&ndash;&gt;-->
+        <!--&lt;!&ndash;url: 'http://localhost:8888/dashboard/image_api/',&ndash;&gt;-->
+        <!--&lt;!&ndash;data: fd,&ndash;&gt;-->
+        <!--&lt;!&ndash;processData: false,&ndash;&gt;-->
+        <!--&lt;!&ndash;contentType: image&ndash;&gt;-->
+    <!--&lt;!&ndash;}).done(function(data) {&ndash;&gt;-->
+           <!--&lt;!&ndash;console.log(data);&ndash;&gt;-->
+    <!--&lt;!&ndash;});&ndash;&gt;-->
+<!--&lt;!&ndash;//  </script>&ndash;&gt;-->
+  <!--<script>-->
+    <!--var file = $('#fileInput').get(0).files.item(0); // instanceof File-->
+    <!--$.ajax({-->
+      <!--type: 'POST',-->
+      <!--url: 'upload.php',-->
+      <!--data: file,-->
+      <!--contentType: 'application/my-binary-type' // set to whatever you like-->
+      <!--processData: false-->
+    <!--});-->
+  <!--</script>-->
+<!--</html>-->

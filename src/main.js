@@ -9,7 +9,7 @@ import VueResource from 'vue-resource'
 import NewEmailInput from './components/test-components/NewEmailInput.vue'
 import VeeValidate from 'vee-validate';
 import ImageCrop from './components/image-crop/ImageCrop.vue'
-
+import CultureApp from './CultureApp.vue'
 let interceptorSetup = function (request, next) {
     console.log(request);
     if(request.method == 'POST'){
@@ -52,7 +52,12 @@ new Vue({
 //     render: h => h(Deepstream)
 // })
 
+// new Vue({
+//     el: "#animation",
+//     render: h => h(ImageCrop)
+// });
+
 new Vue({
-    el: "#animation",
-    render: h => h(ImageCrop)
-})
+    el: "#croppie",
+    render: h => h(CultureApp)
+});
