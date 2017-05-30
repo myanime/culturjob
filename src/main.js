@@ -6,7 +6,7 @@ import MultiTarnsition from './components/animations/MultiTransition.vue'
 import RyansAutocomplete from './components/test-components/RyansAutocomplete.vue'
 import Deepstream from './components/test-components/Deepstream.vue'
 import VueResource from 'vue-resource'
-import NewEmailInput from './components/test-components/NewEmailInput.vue'
+import NewEmailInput from './components/input-components/NewEmailInput.vue'
 import VeeValidate from 'vee-validate';
 import ImageCrop from './components/image-crop/ImageCrop.vue'
 import CultureApp from './CultureApp.vue'
@@ -57,7 +57,13 @@ new Vue({
 //     render: h => h(ImageCrop)
 // });
 
+
 new Vue({
-    el: "#croppie",
-    render: h => h(CultureApp)
+    el: "#animation",
+    render: h => h(NewEmailInput)
 });
+
+// new Vue({
+//     el: "#croppie",
+//     render: h => h(CultureApp)
+// });

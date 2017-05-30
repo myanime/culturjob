@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import EmailInput from './NewEmailInput.vue'
+    import EmailInput from '../input-components/NewEmailInput.vue'
     export default{
         data() {
             return {

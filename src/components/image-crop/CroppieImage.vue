@@ -1,9 +1,9 @@
 <template>
     <div class="picture">
-        <h1 class="title is-4">Crop Image</h1>
         <div class="imagediv">
             <img id='mycrop' class="my-image"/>
         </div>
+        <br>
         <button class="button" @click="blobMe">Blob Me</button>
     </div>
 </template>
@@ -32,17 +32,10 @@
                     showZoomer: true,
                     enableOrientation: false
                 });
-
-                this.image = new Image();
-                this.image.setAttribute('crossOrigin', 'anonymous'); //optional,  it is needed only if your image is not avalible on same domain.
-                this.image.src = "http://icodingclub.github.io/imagecropper/steve-jobs.jpg";
-
                 this.croppie.bind({
                     url: this.imageLink,
-                    //orientation: 4
                 });
                 //this.croppie.setAttribute('crossOrigin', 'anonymous');
-
             },
             blobMe: function () {
                 this.croppie.result('blob').then(function (blob) {
@@ -58,10 +51,10 @@
     .picture{
         background-color: white;
         margin: 50px;
-        background-color: whitesmoke;
+        background-color: white;
     }
     div.cr-boundary{
-        background-color: hotpink;
+        background-color: navajowhite;
     }
 
 </style>

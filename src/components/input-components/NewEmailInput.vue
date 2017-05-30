@@ -2,7 +2,7 @@
     <div class="columns">
         <div class="column is-half-desktop box-one">
 
-            <h1 class="heading">DeepstreamHub Example!</h1>
+            <h1 class="heading">Example!</h1>
 
             <div class="input-fields" v-if="notSubmitted">
                 <name-input ref="firstNameComponent"
@@ -27,19 +27,21 @@
         <div class="column is-half-desktop box-two">
             <h1 class="heading">Data</h1>
 
-            <dropzone id="myVueDropzone" style="width: 300px"
-                      useFontAwesome="true"
-                      url="https://httpbin.org/post"
-                      maxNumberOfFiles.number="1"
-                      v-on:vdropzone-success="showSuccess">
-                <!-- Optional parameters if any! -->
-                <input type="hidden" name="token" value="xxx">
-            </dropzone>
+            <crop-images imageLink="http://localhost:8081/don.jpeg"></crop-images>
 
-            <br>
+            <!--<dropzone id="myVueDropzone" style="width: 300px"-->
+                      <!--useFontAwesome="true"-->
+                      <!--url="https://httpbin.org/post"-->
+                      <!--maxNumberOfFiles.number="1"-->
+                      <!--v-on:vdropzone-success="showSuccess">-->
+                <!--&lt;!&ndash; Optional parameters if any! &ndash;&gt;-->
+                <!--<input type="hidden" name="token" value="xxx">-->
+            <!--</dropzone>-->
 
-            <img :src="images.google" alt="">
-            {{ images.google }}
+            <!--<br>-->
+
+            <!--<img :src="images.google" alt="">-->
+            <!--{{ images.google }}-->
 
             <div v-for="user in myData">
                 <card imageName="comp.jpg"
@@ -54,11 +56,15 @@
     </div>
 </template>
 
+
+
 <script>
-    import EmailInput from '../input-components/EmailComponent.vue'
-    import NameInput from '../input-components/NameComponent.vue'
+    import EmailInput from './EmailComponent.vue'
+    import NameInput from './NameComponent.vue'
     import Card from '../shared/Card.vue'
     import Dropzone from 'vue2-dropzone'
+    import CroppieImage from '../image-crop/CroppieImage.vue'
+
 
     // Js Snippets
     import { serverResponse } from '../request-response-helpers/request-helper'
@@ -155,7 +161,8 @@
             'email-input': EmailInput,
             'name-input': NameInput,
             'card': Card,
-            'dropzone': Dropzone
+            'dropzone': Dropzone,
+            "crop-images": CroppieImage,
         }
     }
 </script>
