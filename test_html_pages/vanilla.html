@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../src/assets/css/croppie.css" />
+    <script src="../src/assets/js/croppie.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <title>culturejob</title>
+  </head>
+  <body>
+    <img id="vanilla-demo"/>
+  </body>
+  <script>
+        var el = document.getElementById('vanilla-demo');
+        var vanilla = new Croppie(el, {
+            viewport: { width: 200, height: 60 },
+            boundary: { width: 300, height: 300 },
+            //points: [0,0,50,50],
+            showZoomer: true,
+            enableOrientation: false
+        });
+        vanilla.bind({
+            url: 'http://localhost:8081/don.jpeg',
+            orientation: 4
+        });
+        //on button click
+        vanilla.result('blob').then(function(blob) {
+            // do something with cropped blob
+        });
+  </script>
+</html>
