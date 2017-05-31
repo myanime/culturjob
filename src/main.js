@@ -1,10 +1,4 @@
 import Vue from 'vue'
-import App from './App.vue'
-import CommunicationEx from './CommunicationEx.vue'
-import Animation from './components/animations/Animation.vue'
-import MultiTarnsition from './components/animations/MultiTransition.vue'
-import RyansAutocomplete from './components/test-components/RyansAutocomplete.vue'
-import Deepstream from './components/test-components/Deepstream.vue'
 import VueResource from 'vue-resource'
 import NewEmailInput from './components/input-components/NewEmailInput.vue'
 import VeeValidate from 'vee-validate';
@@ -32,30 +26,6 @@ export const eventBus = new Vue({
     }
 });
 
-new Vue({
-  el: '#app',
-  render: h => h(App)
-});
-
-new Vue({
-    el: '#test',
-    render: h => h(CommunicationEx)
-});
-
-// new Vue({
-//     el: '#animation',
-//     render: h => h(RyansAutocomplete)
-// });
-
-// new Vue({
-//     el: '#animation',
-//     render: h => h(Deepstream)
-// })
-
-// new Vue({
-//     el: "#animation",
-//     render: h => h(ImageCrop)
-// });
 
 
 new Vue({

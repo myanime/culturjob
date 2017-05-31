@@ -4,7 +4,9 @@
             <img id='mycrop' class="my-image"/>
         </div>
         <br>
-        <button class="button" @click="blobMe">Blob Me</button>
+        <button class="button" @click="blobMe">Upload Image</button>
+        <br>
+        <br>
     </div>
 </template>
 
@@ -26,19 +28,21 @@
             setUpCroppie(){
                 var el = document.getElementById('mycrop');
                 this.croppie = new Croppie(el, {
-                    viewport: { width: 200, height: 60 },
-                    boundary: { width: 300, height: 200 },
-
-                    showZoomer: true,
+                    viewport: { width: 300, height: 100 },
+                    boundary: { width: 300, height: 100 },
+                    enforceBoundary: true,
+                    mouseWheelZoom: false,
+                    showZoomer: false,
                     enableOrientation: false
                 });
                 this.croppie.bind({
                     url: this.imageLink,
+                    zoom: false
                 });
                 //this.croppie.setAttribute('crossOrigin', 'anonymous');
             },
             blobMe: function () {
-                this.croppie.result('blob').then(function (blob) {
+                this.croppie.result('blob','original').then(function (blob) {
                     console.log(blob);
                     window.open(window.URL.createObjectURL(blob));
                 });
@@ -50,11 +54,10 @@
 <style>
     .picture{
         background-color: white;
-        margin: 50px;
-        background-color: white;
+        margin-left: 0px;
     }
     div.cr-boundary{
-        background-color: navajowhite;
+        background-color: white;
     }
 
 </style>

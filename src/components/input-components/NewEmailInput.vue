@@ -2,7 +2,7 @@
     <div class="columns">
         <div class="column is-half-desktop box-one">
 
-            <h1 class="heading">Example!</h1>
+            <h1 class="heading">Data</h1>
 
             <div class="input-fields" v-if="notSubmitted">
                 <name-input ref="firstNameComponent"
@@ -20,14 +20,15 @@
                              @emailValidEvent="validateForm.emailValid = $event"></email-input>
             </div>
             <br>
+            <crop-images imageLink="http://localhost:8081/twotickets.png"></crop-images>
+
             <button class="button" @click="submitForm">Submit</button>
             <button class="button" @click="getData">Get Data</button>
 
         </div>
         <div class="column is-half-desktop box-two">
-            <h1 class="heading">Data</h1>
+            <h1 class="heading">Preview</h1>
 
-            <crop-images imageLink="http://localhost:8081/don.jpeg"></crop-images>
 
             <!--<dropzone id="myVueDropzone" style="width: 300px"-->
                       <!--useFontAwesome="true"-->
@@ -169,10 +170,10 @@
 
 <style scoped>
     .box-one{
-        border: solid 1px olive
+        border: solid 1px grey;
     }
     .box-two{
-        border: solid 1px olive;
+        border: solid 1px grey;
         border-left: none;
     }
     .columns{
